@@ -4,9 +4,15 @@ Demo app to showcase Android Focus Navigation.
 
 
 # Run
-Running the app as:
+Running the app on Android TV::
 ```
 npx react-native run-android
+
+```
+
+Running the app on Apple TV::
+```
+npx react-native run-ios --scheme="FocusNavigationApp-tvOS" --simulator="Apple TV 4K (at 1080p) (2nd generation)"
 ```
 
 # Basic demo
