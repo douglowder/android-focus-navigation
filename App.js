@@ -13,6 +13,7 @@ import {
   ScrollView,
   View,
   StatusBar,
+  useTVEventHandler,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -20,6 +21,15 @@ import Gallery from './src/components/Gallery';
 import Menu from './src/components/Menu';
 
 const App = () => {
+  const [menuVisible, setMenuVisible] = React.useState(true);
+  useTVEventHandler((evt) => {
+    if (evt?.eventType === 'right') {
+      setMenuVisible(false);
+    }
+    if (evt?.eventType == 'left') {
+      setMenuVisible(true);
+    }
+  });
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -28,7 +38,7 @@ const App = () => {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <View style={styles.body}>
-            <Menu />
+            <Menu visible={menuVisible} />
             <View style={styles.sectionContainer}>
               <Gallery rowNumber={0} />
               <Gallery />
@@ -54,6 +64,7 @@ const styles = StyleSheet.create({
   },
   body: {
     backgroundColor: Colors.black,
+    flexDirection: 'row',
   },
   sectionContainer: {
     marginTop: 32,
